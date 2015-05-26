@@ -1,4 +1,4 @@
-package transport.psi.vu.mif.com.vezukolveza.Activities;
+package transport.psi.vu.mif.com.vezukolveza.Fragments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;

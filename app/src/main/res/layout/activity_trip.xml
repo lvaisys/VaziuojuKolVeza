@@ -1,5 +1,5 @@
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/fragment"
-    android:name="transport.psi.vu.mif.com.vezukolveza.Activities.TripActivityFragment"
+    android:name="transport.psi.vu.mif.com.vezukolveza.Fragments.TripActivityFragment"
     tools:layout="@layout/fragment_trip" android:layout_width="match_parent"
     android:layout_height="match_parent" />
