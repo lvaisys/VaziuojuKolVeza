@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import transport.psi.vu.mif.com.vezukolveza.Fragments.TripEditFragment;
 import transport.psi.vu.mif.com.vezukolveza.R;
 
 
@@ -12,9 +13,10 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int a = 6;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
 
@@ -38,5 +40,15 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void openTripEdit() {
+        TripEditFragment tripEditFragment = TripEditFragment.newInstance();
+        getSupportFragmentManager().popBackStack();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_main, tripEditFragment, "TripEdit")
+                .addToBackStack("TripEdit")
+                .commit();
     }
 }
