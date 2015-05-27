@@ -1,6 +1,11 @@
 package transport.psi.vu.mif.com.vezukolveza.Activities;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +24,7 @@ import transport.psi.vu.mif.com.vezukolveza.R;
 
 public class MainActivity extends ActionBarActivity {
     private MainActivityFragment mainActivityFragment;
+    private static final String ARG_PARAM = "trip_id";
     private TripEditFragment tripEditFragment;
 
     @Override
@@ -68,7 +74,8 @@ public class MainActivity extends ActionBarActivity {
 
     public void openTripEdit() {
         Spinner spinner = (Spinner) findViewById(R.id.main_trip_list);
-        tripEditFragment = TripEditFragment.newInstance((int) spinner.getSelectedItemPosition());
+        int tripId = (int) spinner.getSelectedItemPosition();
+        tripEditFragment = TripEditFragment.newInstance(tripId);
         FragmentManager fragmentManager = getFragmentManager();
 
 
@@ -77,5 +84,39 @@ public class MainActivity extends ActionBarActivity {
                 .replace(R.id.fragment_main, tripEditFragment, "TripEdit")
                 .addToBackStack("TripEdit")
                 .commit();
+    }
+
+    public void openTripStart(int tripId) {
+        //displayPromptForEnablingGPS();
+        Intent intent = new Intent(this, TripActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt(ARG_PARAM, tripId);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
+    }
+
+    public void displayPromptForEnablingGPS()
+    {
+        AlertDialog.Builder builder =
+                new AlertDialog.Builder(this);
+        final String action = Settings.ACTION_LOCATION_SOURCE_SETTINGS;
+        final String message = "Prašome įsijungti GPS tikslesnei informacijai surinkti";
+
+        builder.setMessage(message)
+                .setPositiveButton("Taip",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface d, int id) {
+                                startActivity(new Intent(action));
+                                d.dismiss();
+                            }
+                        })
+                .setNegativeButton("Ne",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface d, int id) {
+                        d.cancel();
+                    }
+                });
+        builder.create().show();
     }
 }

@@ -24,6 +24,7 @@ import transport.psi.vu.mif.com.vezukolveza.R;
 public class MainActivityFragment extends Fragment implements View.OnClickListener {
 
     private List<Trip> trips;
+
     public MainActivityFragment() {
     }
 
@@ -38,6 +39,7 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
 
         Spinner list = (Spinner) rootView.findViewById(R.id.main_trip_list);
         TripCursorAdapter tripCursorAdapter = new TripCursorAdapter(getActivity(), trips);
+
 
         list.setAdapter(tripCursorAdapter);
 
