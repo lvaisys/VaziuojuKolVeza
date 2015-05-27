@@ -8,6 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import transport.psi.vu.mif.com.vezukolveza.DataManager.Trip;
@@ -48,8 +51,16 @@ public class TripCursorAdapter extends BaseAdapter implements SpinnerAdapter {
         }
         TextView t1 = (TextView) spinView.findViewById(R.id.spin_from);
         TextView t2 = (TextView) spinView.findViewById(R.id.spin_to);
-        t1.setText(String.valueOf(list.get(position).getFromCity().getName()));
-        t2.setText(list.get(position).getToCity().getName());
+        TextView t3 = (TextView) spinView.findViewById(R.id.spin_date);
+
+        Trip trip = list.get(position);
+
+        t1.setText(String.valueOf(trip.getFromCity().getName()));
+        t2.setText(trip.getToCity().getName());
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        t3.setText(format.format(trip.getDate().getTime()));
         return spinView;
     }
 }

@@ -14,8 +14,14 @@ import transport.psi.vu.mif.com.vezukolveza.DataManager.Trip;
  * Created by Tomas on 5/27/2015.
  */
 public class ApplicationController extends Application {
+
+    public ApplicationController() {
+        fillTestData();
+    }
+
     private static List<Trip> trips = new ArrayList<Trip>();
     private static List<City> cities = new ArrayList<City>();
+
 
     public static List<Trip> getTrips() {
         return trips;

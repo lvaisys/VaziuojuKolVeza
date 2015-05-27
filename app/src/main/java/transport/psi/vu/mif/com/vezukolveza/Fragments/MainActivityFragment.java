@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import transport.psi.vu.mif.com.vezukolveza.Activities.MainActivity;
+import transport.psi.vu.mif.com.vezukolveza.Context.ApplicationController;
 import transport.psi.vu.mif.com.vezukolveza.DataManager.City;
 import transport.psi.vu.mif.com.vezukolveza.DataManager.Trip;
 import transport.psi.vu.mif.com.vezukolveza.R;
@@ -22,6 +23,7 @@ import transport.psi.vu.mif.com.vezukolveza.R;
  */
 public class MainActivityFragment extends Fragment implements View.OnClickListener {
 
+    private List<Trip> trips;
     public MainActivityFragment() {
     }
 
@@ -32,29 +34,12 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
         Button next = (Button) rootView.findViewById(R.id.edit_info_button);
         next.setOnClickListener(this);
 
-
-        /**
-         * Testiniai duomenys laikinai iki
-         * kol reikes imti is duombazes
-         */
-
-
-
-
-
-
-        // use the SimpleCursorAdapter to show the
-        // elements in a ListView
-
-
-        /**
-         * End
-         */
+        trips = ApplicationController.getTrips();
 
         Spinner list = (Spinner) rootView.findViewById(R.id.main_trip_list);
-        //TripCursorAdapter tripCursorAdapter = new TripCursorAdapter(getActivity(), trips);
+        TripCursorAdapter tripCursorAdapter = new TripCursorAdapter(getActivity(), trips);
 
-        //list.setAdapter(tripCursorAdapter);
+        list.setAdapter(tripCursorAdapter);
 
 
         return rootView;
