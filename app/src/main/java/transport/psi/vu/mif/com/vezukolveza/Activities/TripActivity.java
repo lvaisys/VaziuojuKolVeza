@@ -1,6 +1,7 @@
 package transport.psi.vu.mif.com.vezukolveza.Activities;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -64,5 +65,13 @@ public class TripActivity extends ActionBarActivity {
                 .replace(R.id.fragment_trip, tripInfoFragment, "TripInfo")
                 .addToBackStack("TripInfo")
                 .commit();
+    }
+
+    public void openMainActivity(){
+        Intent nextScreen = new Intent(getApplicationContext(), MainActivity.class);
+
+
+        startActivity(nextScreen);
+        this.finish();
     }
 }
