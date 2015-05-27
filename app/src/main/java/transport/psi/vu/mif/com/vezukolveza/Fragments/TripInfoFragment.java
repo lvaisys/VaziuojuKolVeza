@@ -13,6 +13,7 @@ import android.widget.TextView;
 import transport.psi.vu.mif.com.vezukolveza.Activities.TripActivity;
 import transport.psi.vu.mif.com.vezukolveza.Context.ApplicationController;
 import transport.psi.vu.mif.com.vezukolveza.R;
+import transport.psi.vu.mif.com.vezukolveza.TripManager.GPSManager;
 
 
 public class TripInfoFragment extends Fragment implements View.OnClickListener {
@@ -22,6 +23,8 @@ public class TripInfoFragment extends Fragment implements View.OnClickListener {
     TextView cityFromTV;
     TextView cityToTV;
     Button backBtn;
+    TextView timeTV;
+    TextView speedTV;
 
 
     private OnFragmentInteractionListener mListener;
@@ -52,11 +55,16 @@ public class TripInfoFragment extends Fragment implements View.OnClickListener {
          View rootView =inflater.inflate(R.layout.fragment_trip_info, container, false);
         backBtn = (Button)rootView.findViewById(R.id.backButton);
         backBtn.setOnClickListener(this);
+        timeTV = (TextView) rootView.findViewById(R.id.textViewLaikas);
+
+        speedTV = (TextView) rootView.findViewById(R.id.textViewGreitis);
         cityFromTV = (TextView) rootView.findViewById(R.id.textViewCityA);
         cityToTV = (TextView) rootView.findViewById(R.id.textViewCityB);
         TripActivity tripActivity = (TripActivity) getActivity();
         int id = tripActivity.selectedTripId;
         cityFromTV.setText(ApplicationController.getTrips().get(id).getFromCity().getName());
+        timeTV.setText(Float.toString(ApplicationController.getTrips().get(id).getTime()));
+        speedTV.setText(Float.toString(GPSManager.getAverageSpeed(id)));
         cityToTV.setText(ApplicationController.getTrips().get(id).getToCity().getName());
         return rootView;
     }

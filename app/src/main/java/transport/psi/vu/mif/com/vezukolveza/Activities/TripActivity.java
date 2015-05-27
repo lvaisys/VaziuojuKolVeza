@@ -22,7 +22,7 @@ public class TripActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
         tripInfoFragment = new TripInfoFragment();
-        selectedTripId = 1;//getIntent().getExtras().getInt("trip_id");
+        selectedTripId = getIntent().getExtras().getInt("trip_id");
 
         tripActivityFragment = new TripActivityFragment();
         FragmentManager fragmentManager = getFragmentManager();

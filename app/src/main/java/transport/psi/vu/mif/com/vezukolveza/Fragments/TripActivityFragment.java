@@ -73,12 +73,13 @@ public class TripActivityFragment extends Fragment implements View.OnClickListen
 
                     long elapsedMillis = SystemClock.elapsedRealtime()
                             - timeElapsed.getBase();
-
-                    //tvElapsed.setText((int) elapsedMillis);
-
-
-
                 TripActivity tripActivity = (TripActivity) getActivity();
+                int id = tripActivity.selectedTripId;
+                ApplicationController.getTrips().get(id).setTime(elapsedMillis);
+
+
+
+
                 tripActivity.openTripInfo();
                 break;
         }

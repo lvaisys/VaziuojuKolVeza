@@ -10,6 +10,7 @@ import android.view.View;
 
 import java.util.List;
 
+import transport.psi.vu.mif.com.vezukolveza.Context.ApplicationController;
 import transport.psi.vu.mif.com.vezukolveza.DataManager.DataManager;
 import transport.psi.vu.mif.com.vezukolveza.DataManager.GPSpoint;
 
@@ -18,9 +19,7 @@ public class GPSManager implements View.OnClickListener {
 
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
 
-    DataManager dataManager;
-
-    boolean isGPSEnabled = false;
+    static boolean isGPSEnabled = false;
     boolean canGetLocation = false;
     boolean stop=false;
 
@@ -30,7 +29,7 @@ public class GPSManager implements View.OnClickListener {
 
     private Location currentLocation;
 
-    protected LocationManager locationManager;
+    protected static LocationManager locationManager;
     protected LocationListener ll;
 
     public GPSManager(Context context) {
@@ -59,7 +58,7 @@ public class GPSManager implements View.OnClickListener {
         };
     }
 
-    public boolean isGPSEnabled(){
+    public static boolean isGPSEnabled(){
         isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         return isGPSEnabled;
     }
@@ -98,21 +97,8 @@ public class GPSManager implements View.OnClickListener {
         return new GPSpoint(currentLocation.hasSpeed(), currentLocation.getSpeed(), currentLocation.getLatitude(), currentLocation.getLongitude());
     }
 
-    public void startSavingGPSCoordinates(){
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                while(!stop){
-                    dataManager.AddGPSPoint(getGPSPoint());
-                    try {
-                        Thread.sleep(MIN_TIME_BW_UPDATES);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-            }
-        };
+    public void startSavingGPSCoordinates(int id){
+        Runnable r = new MyRunnable(id);
         Thread t = new Thread(r);
         t.start();
     }
@@ -122,10 +108,10 @@ public class GPSManager implements View.OnClickListener {
         stop=true;
     }
 
-    public float getAverageSpeed(){
+    public static float getAverageSpeed(int id){
         float speedSum = 0;
         int speedCount = 0;
-        List<GPSpoint> points = dataManager.getListGPSPoints();
+        List<GPSpoint> points = ApplicationController.getTrips().get(id).getPoints();
         for(GPSpoint point:points){
             if (point.isGotSpeed()){
                 speedCount++;
@@ -134,5 +120,26 @@ public class GPSManager implements View.OnClickListener {
             }
         }
         return speedSum/speedCount;
+    }
+
+    private class MyRunnable implements Runnable {
+        private int data;
+        public MyRunnable(int _data) {
+            this.data = _data;
+        }
+
+        public void run() {
+            while(!stop){
+
+
+                ApplicationController.getTrips().get(data).getPoints().add(getGPSPoint());
+                try {
+                    Thread.sleep(MIN_TIME_BW_UPDATES);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
     }
 }

@@ -16,12 +16,13 @@ public class Trip {
     private List<GPSpoint> points;
     private int freeSpaces;
     private int spacesLimit;
+    private long time;
 
     public Trip(int id, City fromCity, City toCity) {
         this.id = id;
         this.fromCity = fromCity;
         this.toCity = toCity;
-
+        this.time = 0;
         points = new ArrayList<GPSpoint>();
     }
 
@@ -36,6 +37,7 @@ public class Trip {
     public City getToCity() {
         return toCity;
     }
+
 
     public void setToCity(City toCity) {
         this.toCity = toCity;
@@ -88,5 +90,13 @@ public class Trip {
         }
 
         return null;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time += time;
     }
 }
