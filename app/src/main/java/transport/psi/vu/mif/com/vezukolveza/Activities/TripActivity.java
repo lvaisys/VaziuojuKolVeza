@@ -15,11 +15,14 @@ public class TripActivity extends ActionBarActivity {
 
     private TripActivityFragment tripActivityFragment;
     private TripInfoFragment tripInfoFragment;
+
+    public int selectedTripId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
         tripInfoFragment = new TripInfoFragment();
+        selectedTripId = 1;//getIntent().getExtras().getInt("trip_id");
 
         tripActivityFragment = new TripActivityFragment();
         FragmentManager fragmentManager = getFragmentManager();
