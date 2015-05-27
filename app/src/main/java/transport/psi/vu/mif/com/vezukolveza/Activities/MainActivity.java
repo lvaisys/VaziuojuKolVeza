@@ -1,21 +1,36 @@
 package transport.psi.vu.mif.com.vezukolveza.Activities;
 
+import android.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import transport.psi.vu.mif.com.vezukolveza.Fragments.MainActivityFragment;
 import transport.psi.vu.mif.com.vezukolveza.Fragments.TripEditFragment;
 import transport.psi.vu.mif.com.vezukolveza.R;
 
 
 public class MainActivity extends ActionBarActivity {
+    private MainActivityFragment mainActivityFragment;
+    private TripEditFragment tripEditFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainActivityFragment = new MainActivityFragment();
+        tripEditFragment = new TripEditFragment();
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.popBackStack();
+
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_main, mainActivityFragment, "Main")
+                .addToBackStack("Main")
+                .commit();
 
     }
 
@@ -44,8 +59,10 @@ public class MainActivity extends ActionBarActivity {
 
     public void openTripEdit() {
         TripEditFragment tripEditFragment = TripEditFragment.newInstance();
-        getSupportFragmentManager().popBackStack();
-        getSupportFragmentManager()
+        FragmentManager fragmentManager = getFragmentManager();
+
+
+        fragmentManager
                 .beginTransaction()
                 .replace(R.id.fragment_main, tripEditFragment, "TripEdit")
                 .addToBackStack("TripEdit")
