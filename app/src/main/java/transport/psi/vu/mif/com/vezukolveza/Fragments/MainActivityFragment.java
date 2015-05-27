@@ -32,28 +32,30 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
         Button next = (Button) rootView.findViewById(R.id.edit_info_button);
         next.setOnClickListener(this);
 
+
         /**
          * Testiniai duomenys laikinai iki
          * kol reikes imti is duombazes
          */
-        List<Trip> trips = new ArrayList<Trip>();
-        Trip trip = new Trip();
-        City cityA = new City("Kaunas");
-        City cityB = new City("Vilnius");
 
-        trip.setFromCity(cityA);
-        trip.setToCity(cityB);
 
-        for (int i = 0; i < 50; i++)
-            trips.add(trip);
+
+
+
+
+        // use the SimpleCursorAdapter to show the
+        // elements in a ListView
+
+
         /**
          * End
          */
 
         Spinner list = (Spinner) rootView.findViewById(R.id.main_trip_list);
-        TripCursorAdapter tripCursorAdapter = new TripCursorAdapter(getActivity(), trips);
+        //TripCursorAdapter tripCursorAdapter = new TripCursorAdapter(getActivity(), trips);
 
-        list.setAdapter(tripCursorAdapter);
+        //list.setAdapter(tripCursorAdapter);
+
 
         return rootView;
     }

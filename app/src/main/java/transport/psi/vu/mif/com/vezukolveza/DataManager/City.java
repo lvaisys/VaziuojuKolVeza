@@ -5,10 +5,11 @@ package transport.psi.vu.mif.com.vezukolveza.DataManager;
  */
 public class City {
     private String name;
-    private long id;
+    private int id;
 
-    public City(String name) {
+    public City(int id, String name) {
         this.name = name;
+        this.id = id;
     }
 
     public String getName() {
@@ -23,7 +24,7 @@ public class City {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

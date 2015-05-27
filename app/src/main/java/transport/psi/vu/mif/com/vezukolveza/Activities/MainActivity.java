@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.List;
+
+import transport.psi.vu.mif.com.vezukolveza.Context.ApplicationController;
+import transport.psi.vu.mif.com.vezukolveza.DataManager.City;
+import transport.psi.vu.mif.com.vezukolveza.DataManager.Trip;
 import transport.psi.vu.mif.com.vezukolveza.Fragments.MainActivityFragment;
 import transport.psi.vu.mif.com.vezukolveza.Fragments.TripEditFragment;
 import transport.psi.vu.mif.com.vezukolveza.R;
@@ -22,6 +27,10 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         mainActivityFragment = new MainActivityFragment();
         tripEditFragment = new TripEditFragment();
+
+
+        ApplicationController.fillTestData();
+
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.popBackStack();

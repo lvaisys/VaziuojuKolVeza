@@ -1,6 +1,9 @@
 package transport.psi.vu.mif.com.vezukolveza.DataManager;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  * Created by Tomas on 5/27/2015.
@@ -9,7 +12,18 @@ public class Trip {
     private int id;
     private City fromCity;
     private City toCity;
-    private Date date;
+    private GregorianCalendar date;
+    private List<GPSpoint> points;
+    private int freeSpaces;
+    private int spacesLimit;
+
+    public Trip(int id, City fromCity, City toCity) {
+        this.id = id;
+        this.fromCity = fromCity;
+        this.toCity = toCity;
+
+        points = new ArrayList<GPSpoint>();
+    }
 
     public City getFromCity() {
         return fromCity;
@@ -35,11 +49,35 @@ public class Trip {
         this.id = id;
     }
 
-    public Date getDate() {
+    public GregorianCalendar getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(GregorianCalendar date) {
         this.date = date;
+    }
+
+    public List<GPSpoint> getPoints() {
+        return points;
+    }
+
+    public void setPoints(List<GPSpoint> points) {
+        this.points = points;
+    }
+
+    public int getFreeSpaces() {
+        return freeSpaces;
+    }
+
+    public void setFreeSpaces(int freeSpaces) {
+        this.freeSpaces = freeSpaces;
+    }
+
+    public int getSpacesLimit() {
+        return spacesLimit;
+    }
+
+    public void setSpacesLimit(int spacesLimit) {
+        this.spacesLimit = spacesLimit;
     }
 }
