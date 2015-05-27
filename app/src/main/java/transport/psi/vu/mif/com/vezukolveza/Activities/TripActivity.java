@@ -1,18 +1,31 @@
 package transport.psi.vu.mif.com.vezukolveza.Activities;
 
+import android.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import transport.psi.vu.mif.com.vezukolveza.Fragments.TripActivityFragment;
 import transport.psi.vu.mif.com.vezukolveza.R;
 
 public class TripActivity extends ActionBarActivity {
 
+    private TripActivityFragment tripActivityFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
+
+        tripActivityFragment = new TripActivityFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.popBackStack();
+
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_trip, tripActivityFragment, "Trip")
+                .addToBackStack("Trip")
+                .commit();
     }
 
 
