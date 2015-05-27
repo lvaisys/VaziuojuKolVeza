@@ -12,6 +12,7 @@ import android.widget.Chronometer.OnChronometerTickListener;
 import android.widget.TextView;
 
 import transport.psi.vu.mif.com.vezukolveza.Activities.TripActivity;
+import transport.psi.vu.mif.com.vezukolveza.Context.ApplicationController;
 import transport.psi.vu.mif.com.vezukolveza.R;
 
 /**
@@ -24,6 +25,9 @@ public class TripActivityFragment extends Fragment implements View.OnClickListen
     Button endTripBtn;
     Chronometer timeElapsed;
     TextView tvElapsed;
+    TextView cityFromTV;
+    TextView cityToTV;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,7 +36,12 @@ public class TripActivityFragment extends Fragment implements View.OnClickListen
         endTripBtn = (Button) rootView.findViewById(R.id.end_trip_button);
         endTripBtn.setOnClickListener(this);
         tvElapsed = (TextView)rootView.findViewById(R.id.textViewElapsed);
-
+        cityFromTV = (TextView) rootView.findViewById(R.id.city_a_textView);
+        cityToTV = (TextView) rootView.findViewById(R.id.city_b_textView);
+        TripActivity tripActivity = (TripActivity) getActivity();
+        int id = tripActivity.selectedTripId;
+        cityFromTV.setText(ApplicationController.getTrips().get(id).getFromCity().getName());
+        cityToTV.setText(ApplicationController.getTrips().get(id).getToCity().getName());
 
         timeElapsed  = (Chronometer) rootView.findViewById(R.id.chronometer);
         timeElapsed.setOnChronometerTickListener(new OnChronometerTickListener(){
@@ -61,16 +70,11 @@ public class TripActivityFragment extends Fragment implements View.OnClickListen
         switch (v.getId()) {
             case R.id.end_trip_button:
                 timeElapsed.stop();
-                try
-                {
+
                     long elapsedMillis = SystemClock.elapsedRealtime()
                             - timeElapsed.getBase();
-                    tvElapsed.setText( (int)elapsedMillis);
-                }
-                catch (Exception ex){
 
-                }
-
+                    //tvElapsed.setText((int) elapsedMillis);
 
 
 

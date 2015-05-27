@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import transport.psi.vu.mif.com.vezukolveza.Activities.TripActivity;
+import transport.psi.vu.mif.com.vezukolveza.Context.ApplicationController;
 import transport.psi.vu.mif.com.vezukolveza.R;
 
 
@@ -17,7 +19,8 @@ public class TripInfoFragment extends Fragment implements View.OnClickListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    TextView cityFromTV;
+    TextView cityToTV;
     Button backBtn;
 
 
@@ -49,7 +52,12 @@ public class TripInfoFragment extends Fragment implements View.OnClickListener {
          View rootView =inflater.inflate(R.layout.fragment_trip_info, container, false);
         backBtn = (Button)rootView.findViewById(R.id.backButton);
         backBtn.setOnClickListener(this);
-
+        cityFromTV = (TextView) rootView.findViewById(R.id.textViewCityA);
+        cityToTV = (TextView) rootView.findViewById(R.id.textViewCityB);
+        TripActivity tripActivity = (TripActivity) getActivity();
+        int id = tripActivity.selectedTripId;
+        cityFromTV.setText(ApplicationController.getTrips().get(id).getFromCity().getName());
+        cityToTV.setText(ApplicationController.getTrips().get(id).getToCity().getName());
         return rootView;
     }
 
