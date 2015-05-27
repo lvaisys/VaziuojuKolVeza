@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Spinner;
 
 import java.util.List;
 
@@ -29,11 +30,10 @@ public class MainActivity extends ActionBarActivity {
         tripEditFragment = new TripEditFragment();
 
 
-        ApplicationController.fillTestData();
+
 
 
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.popBackStack();
 
         fragmentManager
                 .beginTransaction()
@@ -67,7 +67,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void openTripEdit() {
-        TripEditFragment tripEditFragment = TripEditFragment.newInstance();
+        Spinner spinner = (Spinner) findViewById(R.id.main_trip_list);
+        tripEditFragment = TripEditFragment.newInstance((int) spinner.getSelectedItemPosition());
         FragmentManager fragmentManager = getFragmentManager();
 
 

@@ -80,4 +80,13 @@ public class Trip {
     public void setSpacesLimit(int spacesLimit) {
         this.spacesLimit = spacesLimit;
     }
+
+    public static Trip findTripById(int id, List<Trip> list) {
+        for (Trip trip : list) {
+            if (trip.getId() == id)
+                return trip;
+        }
+
+        return null;
+    }
 }
