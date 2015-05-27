@@ -39,11 +39,10 @@ public class TripInfoFragment extends Fragment {
      * @return A new instance of fragment TripInfoFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TripInfoFragment newInstance(String param1, String param2) {
+    public static TripInfoFragment newInstance() {
         TripInfoFragment fragment = new TripInfoFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
         fragment.setArguments(args);
         return fragment;
     }

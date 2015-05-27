@@ -7,15 +7,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import transport.psi.vu.mif.com.vezukolveza.Fragments.TripActivityFragment;
+import transport.psi.vu.mif.com.vezukolveza.Fragments.TripInfoFragment;
 import transport.psi.vu.mif.com.vezukolveza.R;
 
 public class TripActivity extends ActionBarActivity {
 
     private TripActivityFragment tripActivityFragment;
+    private TripInfoFragment tripInfoFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
+        tripInfoFragment = new TripInfoFragment();
 
         tripActivityFragment = new TripActivityFragment();
         FragmentManager fragmentManager = getFragmentManager();
@@ -49,5 +52,17 @@ public class TripActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void openTripInfo() {
+        TripInfoFragment tripEditFragment = TripInfoFragment.newInstance();
+        FragmentManager fragmentManager = getFragmentManager();
+
+
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_trip, tripInfoFragment, "TripInfo")
+                .addToBackStack("TripInfo")
+                .commit();
     }
 }
