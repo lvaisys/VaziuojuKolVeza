@@ -41,5 +41,19 @@
         android:id="@+id/chronometer"
         android:layout_below="@+id/city_a_textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="83dp" />
+        android:layout_marginTop="83dp"
+        android:width="300dp"
+        android:textSize="50dp"
+        android:inputType="time"
+        android:gravity="center"
+        android:enabled="true"
+        android:autoText="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textViewElapsed"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
