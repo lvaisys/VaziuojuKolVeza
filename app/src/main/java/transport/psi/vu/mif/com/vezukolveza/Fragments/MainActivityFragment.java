@@ -18,9 +18,7 @@ import transport.psi.vu.mif.com.vezukolveza.DataManager.Trip;
 import transport.psi.vu.mif.com.vezukolveza.R;
 
 
-/**
- * A placeholder fragment containing a simple view.
- */
+
 public class MainActivityFragment extends Fragment implements View.OnClickListener {
 
     private List<Trip> trips;

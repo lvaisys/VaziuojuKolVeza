@@ -16,9 +16,7 @@ import java.util.List;
 import transport.psi.vu.mif.com.vezukolveza.DataManager.Trip;
 import transport.psi.vu.mif.com.vezukolveza.R;
 
-/**
- * Created by Tomas on 5/27/2015.
- */
+
 public class TripCursorAdapter extends BaseAdapter implements SpinnerAdapter {
     private Activity activity;
     private List<Trip> list;

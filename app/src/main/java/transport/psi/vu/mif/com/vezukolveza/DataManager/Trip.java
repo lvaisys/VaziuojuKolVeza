@@ -5,9 +5,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-/**
- * Created by Tomas on 5/27/2015.
- */
+
 public class Trip {
     private int id;
     private City fromCity;

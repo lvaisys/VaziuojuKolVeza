@@ -15,9 +15,7 @@ import transport.psi.vu.mif.com.vezukolveza.Activities.TripActivity;
 import transport.psi.vu.mif.com.vezukolveza.Context.ApplicationController;
 import transport.psi.vu.mif.com.vezukolveza.R;
 
-/**
- * A placeholder fragment containing a simple view.
- */
+
 public class TripActivityFragment extends Fragment implements View.OnClickListener{
 
     public TripActivityFragment() {

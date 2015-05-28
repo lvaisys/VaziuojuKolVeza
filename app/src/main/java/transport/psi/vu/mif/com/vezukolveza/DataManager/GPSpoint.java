@@ -1,8 +1,6 @@
 package transport.psi.vu.mif.com.vezukolveza.DataManager;
 
-/**
- * Created by Laurynas on 2015-05-27.
- */
+
 public class GPSpoint {
     public double getLongitude() {
         return longitude;

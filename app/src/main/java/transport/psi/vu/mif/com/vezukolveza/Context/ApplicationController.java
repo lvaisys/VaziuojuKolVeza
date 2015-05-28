@@ -10,9 +10,7 @@ import java.util.List;
 import transport.psi.vu.mif.com.vezukolveza.DataManager.City;
 import transport.psi.vu.mif.com.vezukolveza.DataManager.Trip;
 
-/**
- * Created by Tomas on 5/27/2015.
- */
+
 public class ApplicationController extends Application {
 
     public ApplicationController() {

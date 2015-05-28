@@ -16,16 +16,12 @@ import transport.psi.vu.mif.com.vezukolveza.Context.ApplicationController;
 import transport.psi.vu.mif.com.vezukolveza.DataManager.Trip;
 import transport.psi.vu.mif.com.vezukolveza.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TripEditFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class TripEditFragment extends Fragment implements View.OnClickListener {
 
     private static final String ARG_PARAM = "trip_id";
 
-    // TODO: Rename and change types of parameters
+
     private int tripId;
     private Trip trip;
     private TextView cityA;
