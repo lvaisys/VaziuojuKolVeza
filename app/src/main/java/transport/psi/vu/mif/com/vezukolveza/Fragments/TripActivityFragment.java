@@ -71,8 +71,7 @@ public class TripActivityFragment extends Fragment implements View.OnClickListen
             case R.id.end_trip_button:
                 timeElapsed.stop();
 
-                    long elapsedMillis = SystemClock.elapsedRealtime()
-                            - timeElapsed.getBase();
+                    long elapsedMillis = SystemClock.elapsedRealtime()- timeElapsed.getBase();
                 TripActivity tripActivity = (TripActivity) getActivity();
                 int id = tripActivity.selectedTripId;
                 ApplicationController.getTrips().get(id).setTime(elapsedMillis);
