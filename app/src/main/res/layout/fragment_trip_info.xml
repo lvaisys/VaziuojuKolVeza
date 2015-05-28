@@ -83,8 +83,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/textViewVidGreitis"
             android:layout_alignBottom="@+id/textView2"
-            android:layout_alignRight="@+id/textViewGreitis"
-            android:layout_alignEnd="@+id/textViewGreitis" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"

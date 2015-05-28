@@ -57,14 +57,18 @@ public class TripInfoFragment extends Fragment implements View.OnClickListener {
         backBtn.setOnClickListener(this);
         timeTV = (TextView) rootView.findViewById(R.id.textViewLaikas);
 
-        speedTV = (TextView) rootView.findViewById(R.id.textViewGreitis);
+        speedTV = (TextView) rootView.findViewById(R.id.textViewVidGreitis);
         cityFromTV = (TextView) rootView.findViewById(R.id.textViewCityA);
         cityToTV = (TextView) rootView.findViewById(R.id.textViewCityB);
         TripActivity tripActivity = (TripActivity) getActivity();
         int id = tripActivity.selectedTripId;
         cityFromTV.setText(ApplicationController.getTrips().get(id).getFromCity().getName());
-        timeTV.setText(Float.toString(ApplicationController.getTrips().get(id).getTime()));
-        speedTV.setText(Float.toString(GPSManager.getAverageSpeed(id)));
+        float x =ApplicationController.getTrips().get(id).getTime() ;
+        int hours = (int) (x / 3600000);
+        int minutes = (int) (x - hours * 3600000) / 60000;
+        int seconds = (int) (x - hours * 3600000 - minutes * 60000) / 1000;
+        timeTV.setText(hours + ":" + minutes + ":" + seconds);
+        speedTV.setText(Float.toString(GPSManager.getAverageSpeed(id)) + "(m/s)");
         cityToTV.setText(ApplicationController.getTrips().get(id).getToCity().getName());
         return rootView;
     }
