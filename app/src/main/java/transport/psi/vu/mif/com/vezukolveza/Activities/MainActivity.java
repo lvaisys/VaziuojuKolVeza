@@ -20,6 +20,7 @@ import transport.psi.vu.mif.com.vezukolveza.DataManager.Trip;
 import transport.psi.vu.mif.com.vezukolveza.Fragments.MainActivityFragment;
 import transport.psi.vu.mif.com.vezukolveza.Fragments.TripEditFragment;
 import transport.psi.vu.mif.com.vezukolveza.R;
+import transport.psi.vu.mif.com.vezukolveza.TripManager.GPSManager;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -88,12 +89,17 @@ public class MainActivity extends ActionBarActivity {
 
     public void openTripStart(int tripId) {
         //displayPromptForEnablingGPS();
-        Intent intent = new Intent(this, TripActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putInt(ARG_PARAM, tripId);
-        intent.putExtras(bundle);
+        if(GPSManager.isGPSEnabled()) {
+            Intent intent = new Intent(this, TripActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt(ARG_PARAM, tripId);
+            intent.putExtras(bundle);
 
-        startActivity(intent);
+            startActivity(intent);
+        } else {
+            displayPromptForEnablingGPS();
+        }
+
     }
 
     public void displayPromptForEnablingGPS()
