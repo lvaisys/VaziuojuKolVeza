@@ -65,10 +65,7 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -88,8 +85,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void openTripStart(int tripId) {
-        //displayPromptForEnablingGPS();
-        if(GPSManager.isGPSEnabled()) {
+        if(GPSManager.isGPSEnabled(getApplicationContext()))
+        {
             Intent intent = new Intent(this, TripActivity.class);
             Bundle bundle = new Bundle();
             bundle.putInt(ARG_PARAM, tripId);
@@ -97,32 +94,28 @@ public class MainActivity extends ActionBarActivity {
 
             startActivity(intent);
         } else {
-            displayPromptForEnablingGPS();
+            AlertDialog.Builder builder =
+                    new AlertDialog.Builder(this);
+            final String action = Settings.ACTION_LOCATION_SOURCE_SETTINGS;
+            final String message = "Prašome įsijungti GPS tikslesnei informacijai surinkti";
+
+            builder.setMessage(message)
+                    .setPositiveButton("Taip",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface d, int id) {
+                                    startActivity(new Intent(action));
+                                    d.dismiss();
+                                }
+                            })
+                    .setNegativeButton("Ne",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface d, int id) {
+                                    d.cancel();
+                                }
+                            });
+            builder.create().show();
         }
 
     }
 
-    public void displayPromptForEnablingGPS()
-    {
-        AlertDialog.Builder builder =
-                new AlertDialog.Builder(this);
-        final String action = Settings.ACTION_LOCATION_SOURCE_SETTINGS;
-        final String message = "Prašome įsijungti GPS tikslesnei informacijai surinkti";
-
-        builder.setMessage(message)
-                .setPositiveButton("Taip",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface d, int id) {
-                                startActivity(new Intent(action));
-                                d.dismiss();
-                            }
-                        })
-                .setNegativeButton("Ne",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface d, int id) {
-                        d.cancel();
-                    }
-                });
-        builder.create().show();
-    }
 }

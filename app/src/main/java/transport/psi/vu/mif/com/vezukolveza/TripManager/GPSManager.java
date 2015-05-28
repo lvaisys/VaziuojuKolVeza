@@ -63,6 +63,16 @@ public class GPSManager implements View.OnClickListener {
         return isGPSEnabled;
     }
 
+    public static boolean isGPSEnabled(Context context) {
+
+        final LocationManager manager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+
+        isGPSEnabled = manager.isProviderEnabled( LocationManager.GPS_PROVIDER );
+
+        return isGPSEnabled;
+
+    }
+
     public void turnOnGPSTracker(){
         String beforeEnable = Settings.Secure.getString (context.getContentResolver(),
                 Settings.Secure.LOCATION_PROVIDERS_ALLOWED);

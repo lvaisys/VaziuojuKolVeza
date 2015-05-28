@@ -32,6 +32,9 @@ public class TripEditFragment extends Fragment implements View.OnClickListener {
     private TextView cityB;
     private TextView tripDate;
     private Button startTrip;
+    private TextView freeSpaces;
+    private Button increaseSpaces;
+    private Button decreaseSpaces;
 
     public static TripEditFragment newInstance(int id) {
         TripEditFragment fragment = new TripEditFragment();
@@ -65,6 +68,12 @@ public class TripEditFragment extends Fragment implements View.OnClickListener {
         cityB = (TextView) rootView.findViewById(R.id.city_name_b);
         tripDate = (TextView) rootView.findViewById(R.id.edit_trip_date);
         startTrip = (Button) rootView.findViewById(R.id.edit_start_trip);
+        freeSpaces = (TextView) rootView.findViewById(R.id.edit_free_spaces);
+        increaseSpaces = (Button) rootView.findViewById(R.id.edit_increase);
+        decreaseSpaces = (Button) rootView.findViewById(R.id.edit_decrease);
+
+        increaseSpaces.setOnClickListener(this);
+        decreaseSpaces.setOnClickListener(this);
 
         startTrip.setOnClickListener(this);
 
@@ -75,6 +84,8 @@ public class TripEditFragment extends Fragment implements View.OnClickListener {
 
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             tripDate.setText(format.format(trip.getDate().getTime()));
+
+            freeSpaces.setText(Integer.toString(trip.getFreeSpaces()));
         }
 
         return rootView;
@@ -87,6 +98,18 @@ public class TripEditFragment extends Fragment implements View.OnClickListener {
             case R.id.edit_start_trip:
                 MainActivity activity = (MainActivity) getActivity();
                 activity.openTripStart(tripId);
+                break;
+            case R.id.edit_increase:
+                if(trip != null) {
+                    trip.increaseSpaces();
+                    freeSpaces.setText(Integer.toString(trip.getFreeSpaces()));
+                }
+                break;
+            case R.id.edit_decrease:
+                if(trip != null) {
+                    trip.decreaseSpaces();
+                    freeSpaces.setText(Integer.toString(trip.getFreeSpaces()));
+                }
                 break;
         }
     }

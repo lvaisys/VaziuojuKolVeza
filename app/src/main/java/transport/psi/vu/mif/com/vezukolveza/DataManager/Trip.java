@@ -99,4 +99,17 @@ public class Trip {
     public void setTime(long time) {
         this.time += time;
     }
+
+    public void increaseSpaces() {
+        if(freeSpaces < spacesLimit) {
+            freeSpaces++;
+        }
+    }
+
+    public void decreaseSpaces() {
+        if(freeSpaces > 0) {
+            freeSpaces--;
+        }
+    }
+
 }
